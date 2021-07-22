@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import Header from "./component/header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import Header from "./component/admin/header";
+import Main from "./component/admin/main";
+import Nav from "./component/admin/nav";
+
+// eslint-disable-next-line
+function App(){
+  return(
+    <div>
+      <div>
+  <Header/>
+  <div className="container-fluid">
+    <div className="row">
+      <Nav/>
+      <Main/>
     </div>
-  );
+  </div>
+</div>
+
+    </div>
+  )
 }
 
 export default App;
