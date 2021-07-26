@@ -1,4 +1,8 @@
-export default function Main() {
+export default function Main(props) {
+    console.log(props);
+    function onDeleteItem(id){
+      props.onAdd(id);
+    }
     return(
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -23,21 +27,27 @@ export default function Main() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>san pham 1</td>
-                <td>1</td>
-                <td className="text-success">Còn hàng</td>
-                <td></td>
+            {props.products.map((product, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{product.name}</td>
+                <td>{product.price}đ</td>
+                <td>
+                  {product.status ? (
+                    <span className="text-primary">Còn hàng</span>
+                  ) : (
+                    <span className="text-danger">Hết hàng</span>
+                  )}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick= { () => props.onAdd(product.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>san pham 2</td>
-                <td>2</td>
-                <td> <span className="text-danger">Hết hàng</span></td>
-                <td></td>
-              </tr>
-              
+            ))}
             </tbody>
           </table>
         </div>
