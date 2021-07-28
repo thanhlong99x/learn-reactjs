@@ -17,6 +17,9 @@ function App(){
      const newProducts = products.filter((item) => item.id !=id);
      setProducts(newProducts);
     };
+  const onAddHandler = (item) => {
+    console.log(item);
+  }
   return(
     <div>
       <div>
@@ -24,7 +27,7 @@ function App(){
   <div className="container-fluid">
     <div className="row">
       <Nav/>
-      <Main products = {products} onAdd={onHandler}/>
+      <Main products = {products} onAdd={onHandler} onAdd={onAddHandler} />
     </div>
   </div>
 </div>
