@@ -19,6 +19,9 @@ function App(){
     };
   const onAddHandler = (item) => {
     console.log(item);
+    setProducts([
+      ...products, item
+    ])
   }
   return(
     <div>

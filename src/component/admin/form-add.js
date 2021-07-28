@@ -1,7 +1,7 @@
 import { useState } from "react/cjs/react.development";
 import props from 'prop-types'
 
-const AddFormProduct = () => {
+const AddFormProduct = (props) => {
     const [controlValue, setControlValue] = useState({});
 const onHandleChange = (event) => {
     const target = event.target;
