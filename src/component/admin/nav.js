@@ -9,25 +9,28 @@ export default function Nav() {
       <div className="position-sticky pt-3">
         <ul className="nav flex-column">
           <li className="nav-item">
+            <NavLink activeClassName="active" className="nav-link" to="/">
+              <span data-feather="shopping-cart">Home</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink
-              exact activeClassName="active"
+              exact
+              activeClassName="active"
               className="nav-link active"
               aria-current="page"
               to="/product"
             >
-              <span data-feather="home">Dashboard</span>
+              <span data-feather="home">Products</span>
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink activeClassName="active" className="nav-link" to="/dashboard">
-              <span data-feather="file" >
-                Orders
-              </span>
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink activeClassName="active" className="nav-link" to="#">
-              <span data-feather="shopping-cart">Products</span>
+            <NavLink
+              activeClassName="active"
+              className="nav-link"
+              to="/product/add"
+            >
+              <span data-feather="file">Add New Product</span>
             </NavLink>
           </li>
         </ul>

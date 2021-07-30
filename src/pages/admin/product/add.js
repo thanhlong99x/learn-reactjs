@@ -1,5 +1,6 @@
-import { useState } from "react/cjs/react.development";
+
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 const AddFormProduct = (props) => {
   const {
@@ -7,32 +8,17 @@ const AddFormProduct = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const history = useHistory();
+
   const onSubmit = (data) => {
     const fakeValue = {
       id: Math.random().toString(36).substring(7),
       ...data,
     };
     props.onAdd(fakeValue);
-    // console.log(fakeValue);
+    history.push('/product');
   };
-  //     const [controlValue, setControlValue] = useState({});
-  // const onHandleChange = (event) => {
-  //     const target = event.target;
-  //     const value = target.value;
-  //     const name = target.name;
-  //     setControlValue({
-  //         ...controlValue, //spread operator 41 38
-  //         [name]: value
-  //     });
-  // };
 
-  // const onHandleSubmit = (e) =>{
-  //   e.preventDefault();
-  //   const fakeValue= {
-  //     id: Math.random().toString(36).substring(7), ... controlValue
-  //   }
-  //   props.onAdd(fakeValue);
-  // }
   return (
     <div>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

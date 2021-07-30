@@ -1,18 +1,10 @@
-// import Header from "./component/header";
-
-import Header from "./component/admin/header";
-import Main from "./component/admin/main";
-import Nav from "./component/admin/nav";
 import { useState } from "react";
-import { onHandleAdd } from "react";
 import { useEffect } from "react";
-import { add, getAll, remove } from "./api/productApi";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { add, edit, getAll, remove } from "./api/productApi";
+import Routes from "./routes";
 
 // eslint-disable-next-line
 function App() {
-  const API = "https://60f7acd19cdca00017454f2e.mockapi.io/product";
-
   //chay sau khi return
   useEffect(() => {
     const getProducts = async () => {
@@ -37,34 +29,27 @@ function App() {
   // them san pham
   const onAddHandler = async (item) => {
     const { data } = await add(item);
-    setProducts([...products, item]);
+    setProducts([...products, data]);
+  };
+// cap nhat san pham
+  const onEditHandler =async (item) => {
+    try {
+      const {data} = await edit(item);
+      const newProducts = products.map((product) =>
+        product.id == item.id ? data : product
+      );
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
-    <Router>
-      <div>
-        <Header />
-        <div className="container-fluid">
-          <div className="row">
-            <Nav />
-            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <Switch>
-              <Route exact path="/product">
-                <Main 
-                  products={products}
-                  onRemove={onRemoveHandler}
-                  onAdd={onAddHandler}
-                />
-              </Route>
-              <Route path="/product/:id/edit">
-                Edit
-              </Route>
-            </Switch>
-            </main>
-          </div>
-        </div>
-      </div>
-    </Router>
+    <Routes
+      products={products}
+      onRemove={onRemoveHandler}
+      onAdd={onAddHandler}
+      onEdit={onEditHandler}
+    ></Routes>
   );
 }
 
